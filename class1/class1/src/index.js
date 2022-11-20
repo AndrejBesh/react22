@@ -26,20 +26,34 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book key={book.id} {...book} /> //spreading all the properties from the object, with that we don't send the whole object trough the props
+        return <Book key={book.id} {...book} />
       })}
     </section>
   )
 }
 const Book = ({ img, title, author }) => {
-  // const { img, title, author } = props
+  // attribute,eventHandler
+  //onClick ,onMouseOver
+  const clickHandler = () => {
+    alert('hello world')
+  }
+  const complexExample = (author) => {
+    console.log(author)
+  }
   return (
-    <article className='book'>
+    <article className='book' onMouseOver={() => console.log(title)}>
       <img src={img} alt='book' />
-      <h1>{title}</h1>
+      <h1 onClick={() => console.log(title)}>{title}</h1>
       <h4>{author}</h4>
+      <button type='button' onClick={clickHandler}>
+        reference example
+      </button>
+      <button type='button' onClick={() => complexExample(author)}>
+        complex example
+      </button>
     </article>
   )
+  // if we don't want to invoke the event func immediately, only on click- complexExample
 }
 const container = document.getElementById('root')
 const root = createRoot(container)
